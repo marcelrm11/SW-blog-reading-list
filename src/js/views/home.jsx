@@ -5,23 +5,37 @@ import { Context } from "../store/appContext";
 
 function Home() {
   const { store, actions } = useContext(Context);
-  let myList;
-  useEffect(() => {
-    try {
-      const results = store.data.people.results;
-      console.log(results);
-      if (results) {
-        myList = results.map((item, index) => {
-          return <li>{item.name}</li>;
-        });
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  });
-  //   console.log(results);
+  let peopleList, planetsList, vehiclesList;
+  let peopleObj = store.data.people;
+  let planetsObj = store.data.planets;
+  let vehiclesObj = store.data.vehicles;
 
-  //   console.log(myList);
+  if (peopleObj) {
+    // this 'if' is the key for the view to wait for data for rendering
+    const people = peopleObj.results;
+    peopleList = people.map((person, i) => {
+      console.log(person);
+      return <li key={i}>{person.name}</li>; // only has id, name and url. use url to fetch other properties
+    });
+  }
+
+  if (planetsObj) {
+    // this 'if' is the key for the view to wait for data for rendering
+    const planets = planetsObj.results;
+    planetsList = planets.map((planet, i) => {
+      console.log(planet);
+      return <li key={i}>{planet.name}</li>; // only has id, name and url. use url to fetch other properties
+    });
+  }
+
+  if (vehiclesObj) {
+    // this 'if' is the key for the view to wait for data for rendering
+    const vehicles = vehiclesObj.results;
+    vehiclesList = vehicles.map((vehicle, i) => {
+      console.log(vehicle);
+      return <li key={i}>{vehicle.name}</li>; // only has id, name and url. use url to fetch other properties
+    });
+  }
 
   return (
     <div className="text-center mt-5">
@@ -29,9 +43,9 @@ function Home() {
       <p>
         <img src="https://picsum.photos/200" />
       </p>
-      <ul>{myList}</ul>
-      {/* <div>{store.data.results[0].name}</div> */}
-      {/* <CardList list={store.data.results} /> */}
+      <ul>{peopleList}</ul>
+      <ul>{planetsList}</ul>
+      <ul>{vehiclesList}</ul>
     </div>
   );
 }
