@@ -18,9 +18,11 @@ const getState = ({ getStore, getActions, setStore }) => {
             return newData;
           })
           .then((data) => {
+            // make function (repeats in planets and vehicles)
             let results = data.people.results;
             for (let i = 0; i < results.length; i++) {
-              actions.loadDetail("people", results[i].uid);
+              // actions.loadDetail("people", results[i].uid);
+              actions.loadDetail(results[i].url);
             }
           })
           .catch((error) => console.log(error))
@@ -35,8 +37,16 @@ const getState = ({ getStore, getActions, setStore }) => {
             const newData = { ...store.data, planets: resdata };
             setStore({ data: newData });
             console.log("planets loaded");
+            return newData;
           })
-          .catch((error) => console.log(error));
+          .then((data) => {
+            let results = data.planets.results;
+            for (let i = 0; i < results.length; i++) {
+              actions.loadDetail("planets", results[i].uid);
+            }
+          })
+          .catch((error) => console.log(error))
+          .finally(() => console.log(store));
       },
       loadVehicles: () => {
         const store = getStore();
@@ -47,12 +57,20 @@ const getState = ({ getStore, getActions, setStore }) => {
             const newData = { ...store.data, vehicles: resdata };
             setStore({ data: newData });
             console.log("vehicles loaded");
+            return newData;
           })
-          .catch((error) => console.log(error));
+          .then((data) => {
+            let results = data.vehicles.results;
+            for (let i = 0; i < results.length; i++) {
+              actions.loadDetail("vehicles", results[i].uid);
+            }
+          })
+          .catch((error) => console.log(error))
+          .finally(() => console.log(store));
       },
-      loadDetail: (group, id) => {
+      loadDetail: (url) => {
         console.log("loading detail");
-        fetch(`https://www.swapi.tech/api/${group}/${id}`)
+        fetch(url)
           .then((response) => response.json())
           .then((resdata) => resdata.result.properties)
           .then((properties) => {

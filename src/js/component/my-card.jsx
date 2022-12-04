@@ -7,17 +7,34 @@ import { Context } from "../store/appContext";
 function MyCard({ item, group }) {
   const { store, actions } = useContext(Context);
   return (
-    <Card style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="https://picsum.photos/100/180" />
+    <Card>
+      <Card.Img variant="top" src="https://picsum.photos/400/200" />
       <Card.Body>
-        <Card.Title>
-          {group}, {item.uid}: {item.name}
-        </Card.Title>
-        <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
-        </Card.Text>
-        <Button variant="primary">
+        <Card.Title>{item.name}</Card.Title>
+        {/* <Card.Text> */}
+        {group === "people" ? (
+          <ul>
+            <li>Birth year: {item.birth_year}</li>
+            <li>Height: {item.height} cm</li>
+            <li>Weight: {item.mass} kg</li>
+          </ul>
+        ) : group === "planets" ? (
+          <ul>
+            <li>Climate: {item.climate}</li>
+            <li>Gravity: {item.gravity} G (?)</li>
+            <li>Population: {item.population} hab.</li>
+          </ul>
+        ) : group === "vehicles" ? (
+          <ul>
+            <li>Cost: ${item.cost_in_credits}</li>
+            <li>Passengers: {item.passengers} pax</li>
+            <li>Length: {item.length} m</li>
+          </ul>
+        ) : (
+          "loading"
+        )}
+        {/* </Card.Text> */}
+        <Button variant="success">
           <Link to={`${group}/${item.uid}`}>Go somewhere</Link>
         </Button>
       </Card.Body>
