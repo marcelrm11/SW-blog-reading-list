@@ -8,6 +8,7 @@ function Home() {
   let peopleObj = store.data.people;
   let planetsObj = store.data.planets;
   let vehiclesObj = store.data.vehicles;
+  // console.log("store people:", peopleObj);
 
   return (
     <div className="text-center mt-5">

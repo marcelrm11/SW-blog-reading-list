@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router";
 import { Context } from "../store/appContext";
 
 function Detail() {
   const { store, actions } = useContext(Context);
   const { group, uid } = useParams();
-  actions.loadDetail(group, uid);
-  let infoLoaded = false;
-  let groupArr, element;
+  useEffect(() => {
+    if (!infoLoaded) {
+      console.log("!infoLoaded");
+      actions.loadDetail(group, uid);
+    }
+  });
+  let groupArr, element, infoLoaded;
   console.log(store);
   const groupObj = store.data[group];
   if (groupObj) {
@@ -19,7 +23,7 @@ function Detail() {
         break;
       }
     }
-    infoLoaded = Object.keys(element).length > 3 ? true : false;
+    infoLoaded = element.loaded;
   }
 
   return <div>{infoLoaded ? element.height : "loading"}</div>;
