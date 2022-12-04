@@ -1,11 +1,12 @@
 import React from "react";
+import { CardGroup } from "react-bootstrap";
 import MyCard from "./my-card.jsx";
 
-function CardList({ list }) {
-  const result = list.map((item, index) => {
-    return <MyCard item={item} key={index} />;
+function CardList({ obj, group }) {
+  const list = obj.results.map((item) => {
+    return <MyCard item={item} key={item.uid} group={group} />;
   });
-  return <div>{result}</div>;
+  return <CardGroup>{list}</CardGroup>;
 }
 
 export default CardList;

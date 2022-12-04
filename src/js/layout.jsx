@@ -4,6 +4,7 @@ import ScrollToTop from "./component/scrollToTop";
 
 import Home from "./views/home.jsx";
 import injectContext from "./store/appContext";
+import Detail from "./views/detail.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -21,6 +22,7 @@ const Layout = () => {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/:group/:uid" element={<Detail />} />
             {/* <Route path="/demo" element={<Demo />} /> */}
             {/* <Route path="/single/:theid" element={<Single />} /> */}
             <Route path="*" element={<h1>Not found!</h1>} />

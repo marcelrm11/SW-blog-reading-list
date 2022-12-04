@@ -24,7 +24,6 @@ const injectContext = (PassedComponent) => {
       state.actions.loadPeople();
       state.actions.loadPlanets();
       state.actions.loadVehicles();
-      // state.actions.loadAllData();
 
       /**
        * EDIT THIS!
