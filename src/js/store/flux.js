@@ -22,7 +22,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             let results = data.people.results;
             for (let i = 0; i < results.length; i++) {
               // actions.loadDetail("people", results[i].uid);
-              actions.loadDetail(results[i].url);
+              actions.loadDetail("people", results[i].uid);
             }
           })
           .catch((error) => console.log(error))
@@ -31,6 +31,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       loadPlanets: () => {
         console.log("loading planets");
         const store = getStore();
+        const actions = getActions();
         fetch("https://www.swapi.tech/api/planets")
           .then((response) => response.json())
           .then((resdata) => {
@@ -50,6 +51,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       loadVehicles: () => {
         const store = getStore();
+        const actions = getActions();
         console.log("loading vehicles");
         fetch("https://www.swapi.tech/api/vehicles")
           .then((response) => response.json())
@@ -68,9 +70,9 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log(error))
           .finally(() => console.log(store));
       },
-      loadDetail: (url) => {
+      loadDetail: (group, id) => {
         console.log("loading detail");
-        fetch(url)
+        fetch(`https://www.swapi.tech/api/${group}/${id}`)
           .then((response) => response.json())
           .then((resdata) => resdata.result.properties)
           .then((properties) => {

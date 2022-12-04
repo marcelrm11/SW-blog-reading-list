@@ -21,7 +21,7 @@ function MyCard({ item, group }) {
         ) : group === "planets" ? (
           <ul>
             <li>Climate: {item.climate}</li>
-            <li>Gravity: {item.gravity} G (?)</li>
+            <li>Day Length: {item.rotation_period} hours</li>
             <li>Population: {item.population} hab.</li>
           </ul>
         ) : group === "vehicles" ? (
