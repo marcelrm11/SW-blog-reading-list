@@ -7,10 +7,18 @@ import { Context } from "../store/appContext";
 function MyCard({ item, group }) {
   const { store, actions } = useContext(Context);
   return (
-    <Card>
-      <Card.Img variant="top" src="https://picsum.photos/400/200" />
+    <Card className="small-card">
+      <Card.Img
+        variant="top"
+        src={item.imgURL}
+        alt={`picture of ${item.name}
+        should go here
+        May the Force be with You`}
+      />
       <Card.Body>
-        <Card.Title>{item.name}</Card.Title>
+        <Card.Title>
+          {item.uid} - {item.name}
+        </Card.Title>
         {/* <Card.Text> */}
         {group === "people" ? (
           <ul>

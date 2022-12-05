@@ -8,13 +8,13 @@ const getState = ({ getStore, getActions, setStore }) => {
       loadPeople: () => {
         const store = getStore();
         const actions = getActions();
-        console.log("loading people");
+        // console.log("loading people");
         fetch("https://www.swapi.tech/api/people")
           .then((response) => response.json())
           .then((resdata) => {
             const newData = { ...store.data, people: resdata };
             setStore({ data: newData });
-            console.log("people loaded");
+            // console.log("people loaded");
             return newData;
           })
           .then((data) => {
@@ -25,8 +25,7 @@ const getState = ({ getStore, getActions, setStore }) => {
               actions.loadDetail("people", results[i].uid);
             }
           })
-          .catch((error) => console.log(error))
-          .finally(() => console.log(store));
+          .catch((error) => console.log(error));
       },
       loadPlanets: () => {
         console.log("loading planets");
@@ -37,7 +36,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((resdata) => {
             const newData = { ...store.data, planets: resdata };
             setStore({ data: newData });
-            console.log("planets loaded");
+            // console.log("planets loaded");
             return newData;
           })
           .then((data) => {
@@ -46,19 +45,18 @@ const getState = ({ getStore, getActions, setStore }) => {
               actions.loadDetail("planets", results[i].uid);
             }
           })
-          .catch((error) => console.log(error))
-          .finally(() => console.log(store));
+          .catch((error) => console.log(error));
       },
       loadVehicles: () => {
         const store = getStore();
         const actions = getActions();
-        console.log("loading vehicles");
+        // console.log("loading vehicles");
         fetch("https://www.swapi.tech/api/vehicles")
           .then((response) => response.json())
           .then((resdata) => {
             const newData = { ...store.data, vehicles: resdata };
             setStore({ data: newData });
-            console.log("vehicles loaded");
+            // console.log("vehicles loaded");
             return newData;
           })
           .then((data) => {
@@ -71,7 +69,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .finally(() => console.log(store));
       },
       loadDetail: (group, id) => {
-        console.log("loading detail");
+        // console.log("loading detail");
         fetch(`https://www.swapi.tech/api/${group}/${id}`)
           .then((response) => response.json())
           .then((resdata) => resdata.result.properties)
@@ -82,12 +80,19 @@ const getState = ({ getStore, getActions, setStore }) => {
               const results = updatedStore.data[group].results;
               for (let i = 0; i < results.length; i++) {
                 if (results[i].uid === id) {
-                  results[i] = { ...results[i], ...properties, loaded: true };
+                  results[i] = {
+                    ...results[i],
+                    ...properties,
+                    loaded: true,
+                    imgURL: `https://starwars-visualguide.com/assets/img/${
+                      group === "people" ? "characters" : group
+                    }/${id}.jpg`,
+                  };
                   break;
                 }
               }
               setStore({ data: updatedStore.data });
-              console.log(`detail loaded: ${group}/${id}`);
+              // console.log(`detail loaded: ${group}/${id}`);
             }
           })
           .catch((error) => console.log(error));
