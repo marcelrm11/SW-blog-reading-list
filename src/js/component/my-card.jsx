@@ -16,10 +16,7 @@ function MyCard({ item, group }) {
         May the Force be with You`}
       />
       <Card.Body>
-        <Card.Title>
-          {item.uid} - {item.name}
-        </Card.Title>
-        {/* <Card.Text> */}
+        <Card.Title>{item.name}</Card.Title>
         {group === "people" ? (
           <ul>
             <li>Birth year: {item.birth_year}</li>
@@ -41,9 +38,8 @@ function MyCard({ item, group }) {
         ) : (
           "loading"
         )}
-        {/* </Card.Text> */}
-        <Button variant="success">
-          <Link to={`${group}/${item.uid}`}>Go somewhere</Link>
+        <Button variant="outline-primery border-primary">
+          <Link to={`${group}/${item.uid}`}>Details</Link>
         </Button>
       </Card.Body>
     </Card>

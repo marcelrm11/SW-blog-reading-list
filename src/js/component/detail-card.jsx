@@ -10,24 +10,75 @@ const peopleProperties = [
   "birth_year",
   "gender",
 ]; // add homeworld? films? etc.
+const planetsProperties = [
+  "population",
+  "rotation_period",
+  "orbital_period",
+  "diameter",
+  "gravity",
+  "terrain",
+  "surface_water",
+  "climate",
+];
+const vehiclesProperties = [
+  "model",
+  "manufacturer",
+  "vehicle_class",
+  "cost_in_credits",
+  "max_atmosphering_speed",
+  "length",
+  "cargo_capacity",
+  "crew",
+  "passengers",
+];
 
-function DetailCard({ element }) {
+function DetailCard({ element, group }) {
+  console.log(group, element);
+  let unit; // refactor to functions the following repeated code
   const properties = Object.entries(element).map(([key, value]) => {
-    if (peopleProperties.includes(key)) {
-      key = key.replace("_", " ");
-      key = key[0].toUpperCase() + key.substring(1);
-      return (
-        <React.Fragment key={key}>
-          <label htmlFor={key}>{key}:</label>
-          <span name={key}>
-            {value}
-            {key === "Height" ? "cm" : key === "Mass" ? "kg" : ""}
-          </span>
-          <br />
-        </React.Fragment>
-      );
+    if (group === "people") {
+      unit = key === "height" ? "cm" : key === "mass" ? "kg" : "";
+      if (peopleProperties.includes(key)) {
+        key = key.replaceAll("_", " ");
+        key = key[0].toUpperCase() + key.substring(1);
+      } else return;
+    } else if (group === "planets") {
+      unit =
+        key === "rotation_period" || key === "orbital_period"
+          ? " days"
+          : key === "diameter"
+          ? "km"
+          : "";
+      if (planetsProperties.includes(key)) {
+        key = key.replaceAll("_", " ");
+        key = key[0].toUpperCase() + key.substring(1);
+      } else return;
+    } else if (group === "vehicles") {
+      unit =
+        key === "cost_in_credits"
+          ? " credits"
+          : key === "max_atmosphering_speed"
+          ? "km/h"
+          : key === "length"
+          ? "m"
+          : key === "cargo_capacity"
+          ? "kg"
+          : "";
+      if (vehiclesProperties.includes(key)) {
+        key = key.replaceAll("_", " ");
+        key = key[0].toUpperCase() + key.substring(1);
+      } else return;
     }
-    return;
+    return (
+      <React.Fragment key={key}>
+        <label htmlFor={key}>{key}:</label>
+        <span name={key}>
+          {value}
+          {unit}
+        </span>
+        <br />
+      </React.Fragment>
+    );
   });
   return (
     <article>

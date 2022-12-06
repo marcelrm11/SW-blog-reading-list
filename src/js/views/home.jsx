@@ -13,7 +13,7 @@ function Home() {
   // console.log("store vehicles:", vehiclesObj);
 
   return (
-    <section className="container-home">
+    <section className="container container-home">
       <h1>STAR WARS</h1>
       {peopleObj ? (
         <CardList obj={peopleObj} group="people" />

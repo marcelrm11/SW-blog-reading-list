@@ -26,7 +26,11 @@ function Detail() {
     console.log(element);
   }
 
-  return <div>{infoLoaded ? <DetailCard element={element} /> : "loading"}</div>;
+  return (
+    <div className="container py-3">
+      {infoLoaded ? <DetailCard element={element} group={group} /> : "loading"}
+    </div>
+  );
 }
 
 export default Detail;
