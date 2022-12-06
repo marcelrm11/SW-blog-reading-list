@@ -11,7 +11,7 @@ function Detail() {
       actions.loadDetail(group, uid);
     }
   });
-  let groupArr, element, infoLoaded, properties;
+  let groupArr, element, infoLoaded;
   // console.log(store);
   const groupObj = store.data[group];
   if (groupObj) {
