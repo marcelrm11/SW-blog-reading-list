@@ -38,8 +38,11 @@ function MyCard({ item, group }) {
         ) : (
           "loading"
         )}
-        <Button variant="outline-primery border-primary">
+        <Button variant="outline-primary">
           <Link to={`${group}/${item.uid}`}>Details</Link>
+        </Button>
+        <Button variant="outline-warning">
+          <i class="fa-regular fa-heart"></i>
         </Button>
       </Card.Body>
     </Card>

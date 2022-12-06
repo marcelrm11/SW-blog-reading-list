@@ -1,7 +1,9 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      data: {},
+      data: {
+        favorites: [],
+      },
     },
     actions: {
       // Use getActions to call a function within a fuction
@@ -18,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             return newData;
           })
           .then((data) => {
-            // make function (repeats in planets and vehicles)
+            // refactor with function (repeats in planets and vehicles)
             let results = data.people.results;
             for (let i = 0; i < results.length; i++) {
               // actions.loadDetail("people", results[i].uid);
@@ -28,7 +30,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .catch((error) => console.log(error));
       },
       loadPlanets: () => {
-        console.log("loading planets");
+        // console.log("loading planets");
         const store = getStore();
         const actions = getActions();
         fetch("https://www.swapi.tech/api/planets")
@@ -75,7 +77,7 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((resdata) => resdata.result.properties)
           .then((properties) => {
             const store = getStore();
-            let updatedStore = JSON.parse(JSON.stringify(store));
+            let updatedStore = JSON.parse(JSON.stringify(store)); // shallow copy of an object
             if (updatedStore.data[group]) {
               const results = updatedStore.data[group].results;
               for (let i = 0; i < results.length; i++) {
