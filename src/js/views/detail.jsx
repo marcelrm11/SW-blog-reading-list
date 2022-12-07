@@ -23,7 +23,6 @@ function Detail() {
       }
     }
     infoLoaded = element.loaded;
-    console.log(element);
   }
 
   return (

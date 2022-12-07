@@ -33,7 +33,6 @@ const vehiclesProperties = [
 ];
 
 function DetailCard({ element, group }) {
-  console.log(group, element);
   let unit; // refactor to functions the following repeated code
   const properties = Object.entries(element).map(([key, value]) => {
     if (group === "people") {

@@ -3,9 +3,27 @@
   flex-direction: column;
   justify-content: space-between;
   min-height: 100%;
+  margin-top: 54px; /*navbar height*/
+}
+.navbar {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 2;
 }
 a,
 a:hover {
   text-decoration: none;
   color: inherit;
+}
+.dropdown-item {
+  padding: 0;
+  padding-right: 0.25rem;
+}
+.dropdown-menu {
+  padding: 0.25rem 0;
+}
+.dropdown-item a {
+  padding: 8px 12px;
+  flex-grow: 1;
 }
