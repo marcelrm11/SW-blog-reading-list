@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
-import { Context } from "../store/appContext";
 
 function MyCard({ item, group, handleClick }) {
-  const { store, actions } = useContext(Context);
+  if (group === "favorites") {
+    group = item.url.substring(27, item.url.lastIndexOf("/"));
+  }
   return (
     <Card className="small-card">
       <Card.Img
@@ -17,6 +18,7 @@ function MyCard({ item, group, handleClick }) {
       />
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
+
         {group === "people" ? (
           <ul>
             <li>Birth year: {item.birth_year}</li>

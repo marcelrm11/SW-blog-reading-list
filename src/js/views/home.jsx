@@ -1,31 +1,46 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext } from "react";
 import "../../styles/home.css";
 import CardList from "../component/card-list.jsx";
 import { Context } from "../store/appContext";
+import Spinner from "react-bootstrap/Spinner";
 
 function Home() {
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
   let peopleObj = store.data.people;
   let planetsObj = store.data.planets;
   let vehiclesObj = store.data.vehicles;
+  let favoritesObj = { results: store.data.favorites };
+  if (peopleObj) {
+    fetch(peopleObj.next)
+      .then((res) => res.json())
+      .then((res) => console.log(res));
+  }
 
   return (
     <section className="container container-home">
-      <h1>STAR WARS</h1>
+      <h1 className="text-light">STAR WARS</h1>
       {peopleObj ? (
         <CardList obj={peopleObj} group="people" />
       ) : (
-        "loading people"
+        <Spinner animation="border" variant="light" />
       )}
       {planetsObj ? (
         <CardList obj={planetsObj} group="planets" />
       ) : (
-        "loading planets"
+        <Spinner animation="border" variant="light" />
       )}
       {vehiclesObj ? (
         <CardList obj={vehiclesObj} group="vehicles" />
       ) : (
-        "loading vehicles"
+        <Spinner animation="border" variant="light" />
+      )}
+      {store.data.favorites.length > 0 ? (
+        <CardList obj={favoritesObj} group="favorites" />
+      ) : (
+        <div className="p-5 border border-light rounded">
+          <h3 className="text-light text-center">FAVORITES</h3>
+          <h6 className="text-light">No favorites yet, try adding some!</h6>
+        </div>
       )}
     </section>
   );

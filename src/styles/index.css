@@ -4,6 +4,7 @@
   justify-content: space-between;
   min-height: 100%; /*calc(100% - 54px); if fixed navbar*/
   /* margin-top: 54px; navbar height */
+  background-color: #222;
 }
 /* .navbar {
   width: 100%;

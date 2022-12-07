@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "../store/appContext";
 import Dropdown from "react-bootstrap/Dropdown";
-import DropdownButton from "react-bootstrap/DropdownButton";
 import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import Badge from "react-bootstrap/Badge";
 
 function FavoritesList({ favs }) {
   const { actions } = useContext(Context);
@@ -16,7 +16,6 @@ function FavoritesList({ favs }) {
   if (favs.length > 0) {
     list = favs.map((item) => {
       relativePath = item.url.slice(27);
-      console.log(relativePath);
       return (
         <Dropdown.Item
           as="div"
@@ -41,13 +40,12 @@ function FavoritesList({ favs }) {
     );
   }
   return (
-    <DropdownButton
-      id="dropdown-basic-button"
-      title="Favorites"
-      autoClose={false}
-    >
-      {list}
-    </DropdownButton>
+    <Dropdown autoClose={false} align="end">
+      <Dropdown.Toggle variant="light">
+        Favorites <Badge bg="dark">{favs.length}</Badge>
+      </Dropdown.Toggle>
+      <Dropdown.Menu>{list}</Dropdown.Menu>
+    </Dropdown>
   );
 }
 

@@ -2,6 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { useParams } from "react-router";
 import DetailCard from "../component/detail-card.jsx";
 import { Context } from "../store/appContext";
+import Spinner from "react-bootstrap/Spinner";
 
 function Detail() {
   const { store, actions } = useContext(Context);
@@ -27,7 +28,11 @@ function Detail() {
 
   return (
     <div className="container py-3">
-      {infoLoaded ? <DetailCard element={element} group={group} /> : "loading"}
+      {infoLoaded ? (
+        <DetailCard element={element} group={group} />
+      ) : (
+        <Spinner animation="border" variant="light" />
+      )}
     </div>
   );
 }

@@ -11,7 +11,7 @@ function CardList({ obj, group }) {
     return (
       <MyCard
         item={item}
-        key={item.uid}
+        key={item.url}
         group={group}
         handleClick={handleClick}
       />
@@ -19,7 +19,7 @@ function CardList({ obj, group }) {
   });
   return (
     <>
-      <h3>{group.toUpperCase()}</h3>
+      <h3 className="text-light">{group.toUpperCase()}</h3>
       <div className="horiz-group">{list}</div>
     </>
   );
