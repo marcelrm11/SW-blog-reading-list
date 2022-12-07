@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-function MyCard({ item, group }) {
+function MyCard({ item, group, handleClick }) {
   const { store, actions } = useContext(Context);
   return (
     <Card className="small-card">
@@ -20,8 +20,8 @@ function MyCard({ item, group }) {
         {group === "people" ? (
           <ul>
             <li>Birth year: {item.birth_year}</li>
-            <li>Height: {item.height} cm</li>
-            <li>Weight: {item.mass} kg</li>
+            <li>Height: {item.height}cm</li>
+            <li>Weight: {item.mass}kg</li>
           </ul>
         ) : group === "planets" ? (
           <ul>
@@ -31,9 +31,9 @@ function MyCard({ item, group }) {
           </ul>
         ) : group === "vehicles" ? (
           <ul>
-            <li>Cost: ${item.cost_in_credits}</li>
+            <li>Cost: {item.cost_in_credits} credits</li>
             <li>Passengers: {item.passengers} pax</li>
-            <li>Length: {item.length} m</li>
+            <li>Length: {item.length}m</li>
           </ul>
         ) : (
           "loading"
@@ -41,8 +41,12 @@ function MyCard({ item, group }) {
         <Button variant="outline-primary">
           <Link to={`${group}/${item.uid}`}>Details</Link>
         </Button>
-        <Button variant="outline-warning">
-          <i class="fa-regular fa-heart"></i>
+        <Button variant="outline-warning" onClick={(e) => handleClick(e, item)}>
+          {item.favorite ? (
+            <i className="fa-solid fa-heart"></i>
+          ) : (
+            <i className="fa-regular fa-heart"></i>
+          )}
         </Button>
       </Card.Body>
     </Card>

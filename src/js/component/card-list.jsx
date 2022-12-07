@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext.js";
 import MyCard from "./my-card.jsx";
 
 function CardList({ obj, group }) {
+  const { store, actions } = useContext(Context);
+  function handleClick(_, item) {
+    item.favorite ? actions.deleteFavorite(item) : actions.addToFavorites(item);
+  }
   const list = obj.results.map((item) => {
-    return <MyCard item={item} key={item.uid} group={group} />;
+    return (
+      <MyCard
+        item={item}
+        key={item.uid}
+        group={group}
+        handleClick={handleClick}
+      />
+    );
   });
   return (
     <>

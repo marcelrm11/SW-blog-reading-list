@@ -8,9 +8,6 @@ function Home() {
   let peopleObj = store.data.people;
   let planetsObj = store.data.planets;
   let vehiclesObj = store.data.vehicles;
-  // console.log("store people:", peopleObj);
-  // console.log("store planets:", planetsObj);
-  // console.log("store vehicles:", vehiclesObj);
 
   return (
     <section className="container container-home">
