@@ -51,6 +51,26 @@ const getState = ({ getStore, getActions, setStore }) => {
           })
           .catch((error) => console.log(error));
       },
+      addToFavorites: (item) => {
+        const store = getStore();
+        item.favorite = true;
+        const newFavorites = store.data.favorites.concat(item);
+        setStore({ data: { ...store.data, favorites: newFavorites } });
+        console.log(store.data.favorites);
+      },
+      deleteFavorite: (item) => {
+        const store = getStore();
+        const newFavs = store.data.favorites;
+        item.favorite = false;
+        for (let fav of newFavs) {
+          if (fav.url === item.url) {
+            newFavs.splice(newFavs.indexOf(fav), 1);
+            setStore({ data: { ...store.data, favorites: newFavs } });
+            console.log(store.data.favorites);
+            break;
+          }
+        }
+      },
     },
   };
 };
