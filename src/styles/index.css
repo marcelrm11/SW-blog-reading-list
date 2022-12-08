@@ -6,6 +6,18 @@
   /* margin-top: 54px; navbar height */
   background-color: #212529;
 }
+#my-search-list {
+  z-index: 10;
+  max-height: 207px; /* 5 first results + 1px */
+  overflow-y: auto;
+}
+#my-search-list .list-group-item {
+  padding: 0;
+}
+#my-search-list a {
+  padding: 8px 16px;
+  display: block;
+}
 /* .navbar {
   width: 100%;
   position: fixed;

@@ -20,6 +20,14 @@ function Home() {
   return (
     <section className="container container-home">
       <h1 className="text-light">STAR WARS</h1>
+      {store.data.favorites.length > 0 ? (
+        <CardList obj={favoritesObj} group="favorites" />
+      ) : (
+        <div className="p-5 border border-light rounded">
+          <h3 className="text-light text-center">FAVORITES</h3>
+          <h6 className="text-light">No favorites yet, try adding some!</h6>
+        </div>
+      )}
       {peopleObj ? (
         <CardList obj={peopleObj} group="people" />
       ) : (
@@ -34,14 +42,6 @@ function Home() {
         <CardList obj={vehiclesObj} group="vehicles" />
       ) : (
         <Spinner animation="border" variant="light" />
-      )}
-      {store.data.favorites.length > 0 ? (
-        <CardList obj={favoritesObj} group="favorites" />
-      ) : (
-        <div className="p-5 border border-light rounded">
-          <h3 className="text-light text-center">FAVORITES</h3>
-          <h6 className="text-light">No favorites yet, try adding some!</h6>
-        </div>
       )}
     </section>
   );
