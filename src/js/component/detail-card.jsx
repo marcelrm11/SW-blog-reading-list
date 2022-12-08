@@ -1,5 +1,6 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Button from "react-bootstrap/Button";
 
 const peopleProperties = [
   "height",
@@ -32,8 +33,8 @@ const vehiclesProperties = [
   "passengers",
 ];
 
-function DetailCard({ element, group }) {
-  let unit; // refactor to functions the following repeated code
+function DetailCard({ element, group, handleClick }) {
+  let unit; // refactor to functions the following repeated code ?
   const properties = Object.entries(element).map(([key, value]) => {
     if (group === "people") {
       unit = key === "height" ? "cm" : key === "mass" ? "kg" : "";
@@ -82,7 +83,19 @@ function DetailCard({ element, group }) {
   return (
     <article>
       <Card className="detail-card">
-        <Card.Header as="h3">{element.name}</Card.Header>
+        <Card.Header as="h3">
+          {element.name}
+          <Button
+            variant="outline-warning"
+            onClick={(e) => handleClick(e, element)}
+          >
+            {element.favorite ? (
+              <i className="fa-solid fa-heart"></i>
+            ) : (
+              <i className="fa-regular fa-heart"></i>
+            )}
+          </Button>
+        </Card.Header>
         <Card.Body className="detail-card-body">
           <Card.Img src={element.imgURL} />
           <Card.Text>{properties}</Card.Text>

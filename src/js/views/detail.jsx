@@ -3,6 +3,8 @@ import { useParams } from "react-router";
 import DetailCard from "../component/detail-card.jsx";
 import { Context } from "../store/appContext";
 import Spinner from "react-bootstrap/Spinner";
+import Button from "react-bootstrap/Button";
+import { Link } from "react-router-dom";
 
 function Detail() {
   const { store, actions } = useContext(Context);
@@ -12,6 +14,9 @@ function Detail() {
       actions.loadDetail(group, uid);
     }
   });
+  function handleClick(_, item) {
+    item.favorite ? actions.deleteFavorite(item) : actions.addToFavorites(item);
+  }
   let groupArr, element, infoLoaded;
   // console.log(store);
   const groupObj = store.data[group];
@@ -28,8 +33,14 @@ function Detail() {
 
   return (
     <div className="container py-3">
+      <Link to="/">
+        <Button variant="dark" className="back-button">
+          <i className="fa-solid fa-arrow-left"></i>
+          Back
+        </Button>
+      </Link>
       {infoLoaded ? (
-        <DetailCard element={element} group={group} />
+        <DetailCard element={element} group={group} handleClick={handleClick} />
       ) : (
         <Spinner animation="border" variant="light" />
       )}

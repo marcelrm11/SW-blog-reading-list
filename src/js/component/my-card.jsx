@@ -9,13 +9,15 @@ function MyCard({ item, group, handleClick }) {
   }
   return (
     <Card className="small-card">
-      <Card.Img
-        variant="top"
-        src={item.imgURL}
-        alt={`picture of ${item.name}
+      <Link to={`${group}/${item.uid}`} id="small-card-img-link">
+        <Card.Img
+          variant="top"
+          src={item.imgURL}
+          alt={`picture of ${item.name}
         should go here
         May the Force be with You`}
-      />
+        />
+      </Link>
       <Card.Body>
         <Card.Title>{item.name}</Card.Title>
 

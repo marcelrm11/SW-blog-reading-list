@@ -26,6 +26,9 @@
   white-space: pre;
   line-height: 75px;
 }
+#small-card-img-link {
+  height: 290px;
+}
 .small-card .card-body {
   padding-left: 1.5em;
   padding-right: 1.5em;
@@ -39,6 +42,7 @@ ul {
 }
 .detail-card {
   max-height: 80%;
+  border: none;
 }
 .detail-card-body {
   display: flex;
@@ -59,4 +63,13 @@ ul {
   margin-top: 0.5em;
   margin-right: 0.4em;
   font-weight: bold;
+}
+.card-header button {
+  /* margin-left: 1Çem; */
+  border: none;
+  font-size: 1.5rem;
+  background-color: rgba(247, 247, 247);
+}
+.card-header button:hover {
+  background-color: rgba(247, 247, 247);
 }

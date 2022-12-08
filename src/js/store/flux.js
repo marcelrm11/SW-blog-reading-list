@@ -1,5 +1,4 @@
 const getState = ({ getStore, getActions, setStore }) => {
-  console.log(JSON.parse(localStorage.getItem("store")));
   return {
     store: JSON.parse(localStorage.getItem("store")) || {
       data: {
