@@ -10,11 +10,12 @@ function Home() {
   let planetsObj = store.data.planets;
   let vehiclesObj = store.data.vehicles;
   let favoritesObj = { results: store.data.favorites };
-  if (peopleObj) {
-    fetch(peopleObj.next)
-      .then((res) => res.json())
-      .then((res) => console.log(res));
-  }
+  // next page
+  // if (peopleObj) {
+  //   fetch(peopleObj.next)
+  //     .then((res) => res.json())
+  //     .then((res) => console.log(res));
+  // }
 
   return (
     <section className="container container-home">

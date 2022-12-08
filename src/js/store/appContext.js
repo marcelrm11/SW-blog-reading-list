@@ -19,11 +19,17 @@ const injectContext = (PassedComponent) => {
       })
     );
     useEffect(() => {
+      // localStorage.clear();
       const categories = ["people", "planets", "vehicles"];
       categories.forEach((category) => {
-        state.actions.loadData(category);
+        if (!state.store.data[category]) {
+          state.actions.loadData(category);
+        }
       });
     }, []);
+    useEffect(() => {
+      localStorage.setItem("store", JSON.stringify(state.store));
+    }, [state]);
 
     return (
       <Context.Provider value={state}>
