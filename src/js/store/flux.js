@@ -1,6 +1,7 @@
 const getState = ({ getStore, getActions, setStore }) => {
+  console.log(JSON.parse(localStorage.getItem("store")));
   return {
-    store: {
+    store: JSON.parse(localStorage.getItem("store")) || {
       data: {
         favorites: [],
       },
@@ -53,9 +54,21 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       addToFavorites: (item) => {
         const store = getStore();
+        let updatedStore = JSON.parse(JSON.stringify(store)); // shallow copy of an object
+        const group = item.url.substring(27, item.url.lastIndexOf("/"));
+        const results = updatedStore.data[group].results;
+        for (let i = 0; i < results.length; i++) {
+          if (results[i].uid === item.uid) {
+            results[i] = {
+              ...results[i],
+              favorite: true,
+            };
+            break;
+          }
+        }
         item.favorite = true;
         const newFavorites = store.data.favorites.concat(item);
-        setStore({ data: { ...store.data, favorites: newFavorites } });
+        setStore({ data: { ...updatedStore.data, favorites: newFavorites } });
       },
       deleteFavorite: (item) => {
         const store = getStore();
