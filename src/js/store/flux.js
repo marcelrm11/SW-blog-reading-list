@@ -71,12 +71,25 @@ const getState = ({ getStore, getActions, setStore }) => {
       },
       deleteFavorite: (item) => {
         const store = getStore();
+        // following code repeats in add and delete functions: please consider refactoring
+        let updatedStore = JSON.parse(JSON.stringify(store)); // shallow copy of an object
+        const group = item.url.substring(27, item.url.lastIndexOf("/"));
+        const results = updatedStore.data[group].results;
+        for (let i = 0; i < results.length; i++) {
+          if (results[i].uid === item.uid) {
+            results[i] = {
+              ...results[i],
+              favorite: false,
+            };
+            break;
+          }
+        }
         const newFavs = store.data.favorites;
         item.favorite = false;
         for (let fav of newFavs) {
           if (fav.url === item.url) {
             newFavs.splice(newFavs.indexOf(fav), 1);
-            setStore({ data: { ...store.data, favorites: newFavs } });
+            setStore({ data: { ...updatedStore.data, favorites: newFavs } });
             break;
           }
         }
