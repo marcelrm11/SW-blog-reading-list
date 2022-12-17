@@ -1,9 +1,8 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import FavoritesList from "./favorites-list.jsx";
 import { Context } from "../store/appContext.js";
 import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import SearchList from "./search-list.jsx";
 
 export const Navbar = () => {
@@ -11,19 +10,30 @@ export const Navbar = () => {
   const [search, setSearch] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   let storeData = [];
-  // let searchResults = [];
-  let people = store.data.people.results;
-  let planets = store.data.planets.results;
-  let vehicles = store.data.vehicles.results;
-  for (let person of people) {
-    storeData.push(person);
+  let people, planets, vehicles;
+  let peopleObj = store.data.people;
+  let planetsObj = store.data.planets;
+  let vehiclesObj = store.data.vehicles;
+
+  if (peopleObj) {
+    people = store.data.people.results;
+    for (let person of people) {
+      storeData.push(person);
+    }
   }
-  for (let planet of planets) {
-    storeData.push(planet);
+  if (planetsObj) {
+    planets = store.data.planets.results;
+    for (let planet of planets) {
+      storeData.push(planet);
+    }
   }
-  for (let vehicle of vehicles) {
-    storeData.push(vehicle);
+  if (vehiclesObj) {
+    vehicles = store.data.vehicles.results;
+    for (let vehicle of vehicles) {
+      storeData.push(vehicle);
+    }
   }
+
   // console.log(storeData);
   function handleChange(e) {
     let tempResults = [];
