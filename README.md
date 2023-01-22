@@ -21,7 +21,7 @@ To run the project at any time:
 
 ## API
 
-The API used is explained in detail [here](https://www.swapi.tech/). The official one is no longer maintained, but this one is functional thanks to someone who created it with the data.
+The API used is explained in detail [here](https://www.swapi.tech/). The official one is no longer maintained, but this one is functional thanks to someone who created it with the data.\
 The images are taken via url from [here](https://starwars-visualguide.com/#/) using the extension '/assets/img/[group]/[id]', where 'group' means the entity category (e.g. planets), and the corresponding id, coming from the API results.
 
 ## Components/Views/Store
