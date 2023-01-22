@@ -1,99 +1,68 @@
-# WebApp boilerplate with React JS
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io#https://github.com/4GeeksAcademy/react-hello-webapp.git)
+# STAR WARS databank
 
-<p align="center">
-<a href="https://www.loom.com/share/f37c6838b3f1496c95111e515e83dd9b"><img src="https://github.com/4GeeksAcademy/react-hello-webapp/blob/master/src/img/how-to.png?raw=true" /></a>
-</p>
+> This project behaves as a personal reference archive for the Star Wars ecosystem. Currently, it includes some characters, planets and vehicles. It also allows the user to define favorites, saving them in the localStorage. It consumes an external API for the data.
 
+## Background
 
-### Requirements:
-- Make sure you are using node version 10
+This project is part of the learning path in 4Geeks Academy Spain. It combines intermediate React concepts with API usage. It uses React Router and React Context to create a simple representation of a store management system (such as Flux).
 
-1. Install the packages:
+## Usage
+
+The user is able to browse through different entities of the Star Wars saga. They can view a detailed page for each element. They can also mark their favorites, which get stored for future sessions. Finally, there is a search functionality which searches by name within the existing elements.
+
+## Installation
+
+Upon downloading the project, install and start scripts are automatically launched. It can be visualized in the browser.
+To run the project at any time:
+
 ```
-$ npm install
-```
-2. Create a .env file:
-```
-$ cp .env.example .env
-```
-3. Start coding! and the webpack dev server with live reload, for windows, mac, linux or Gitpod:
-
-```bash
-$ npm run start
+  npm run start
 ```
 
-### Styles
-You can update the `styles/index.css` or create new `.css` files inside `styles/` and import them into your current scss or js files depending on your needs.
+## API
+
+The API used is explained in detail [here](https://www.swapi.tech/). The official one is no longer maintained, but this one is functional thanks to someone who created it with the data.
+The images are taken via url from [here](https://starwars-visualguide.com/#/) using the extension '/assets/img/[group]/[id]', where 'group' means the entity category (e.g. planets), and the corresponding id, coming from the API results.
+
+## Components/Views/Store
+
+The 'layout.jsx' file is the top component, where React Router is combined with the store. This is the one passed to React.root.render in 'index.js'. The navbar and the footer lay outside of the routed pages. There are 3 routes: home, entity detail (dynamic route) and 404-NotFound page.
+
+Within the js folder, we find 3 sub-folders: component (self-descriptive), views (where full-page layouts are created for the router to consume), and store (where, using useContext hook, a pseudo-store like Flux is implemented to centralize data and actions for the whole site).
+
+The styles are contained in the 'styles' folder. 
 
 ### Components
-Add more files into your `./src/js/components` or styles folder as you need them and import them into your current files as needed.
 
-**Note (New changes)**: Components have been converted into functions to support the use of hooks:
-* Instead of a class component, we're using a `const` function.
-* Class `constructor` and `state` have been replaced by `useState()` hooks.
-* `componentDidMount()` was replaced by `useEffect({}, [])` - It runs at mount thanks to the second parameter (`[]`).
-* `Actions` and `Store` still work the same way.
+The components are structured as follows:
+- Navbar: 
+- Footer: 
+- CardList: 
+- MyCard: 
+- DetailCard: 
+- SearchList: 
+- FavoritesList: 
+- ScrollToTop: self-descriptive inherited component.
 
-```jsx
-// Previous "Class Oriented"
-export class Demo extends React.Component {
-	constructor(props) {
-		super(props);
+### Store
 
-		this.state = getState('code here');
-	}
-}
+- appContext
+- Flux
 
-// New "Functional Oriented"
-export const Demo = () => (
-	const [state, setState] = getState('code here'); //using the state (if needed)
-  const { store, actions } = useContext(Context); // using the context (if needed)
+### Views
 
-);
-```
+- Home
+- Detail
 
-💡Note: There is an example using the Context API inside `views/demo.js`;
+## Contact info
 
-### Views (Components)
-Add more files into your `./src/js/views` and import them in `./src/js/layout.jsx`.
+You can contact me at [marcelrm11@gmail.com](mailto:marcelrm11@gmail.com).
 
-### Context
-This boilerplate comes with a centralized general Context API. The file `./src/js/store/flux.js` has a base structure for the store, we encourage you to change it and adapt it to your needs.
+## License
 
-React Context [docs](https://reactjs.org/docs/context.html)
-BreathCode Lesson [view](https://content.breatheco.de/lesson/react-hooks-explained)
+[MIT](https://opensource.org/licenses/MIT)
 
-The `Provider` is already set. You can consume from any component using the useContext hook to get the `store` and `actions` from the Context. Check `/views/demo.js` to see a demo.
+## Credits
 
-```jsx
-import { Context } from "../store/appContext";
-const MyComponentSuper = () => {
-  //here you use useContext to get store and actions
-  const { store, actions } = useContext(Context);
-  return <div>{/* you can use your actions or store inside the html */}</div>
-}
-```
-
-## Publish your website!
-
-1. **Vercel:** The FREE recomended hosting provider is [vercel.com](https://vercel.com/), you can deploy in 1 minutes by typing the following 2 commands:
-
-Login (you need to have an account):
-```sh
-$ npm i vercel -g && vercel login
-```
-Deploy:
-```sh
-$ vercel --prod
-```
-✎ Note: If you don't have an account just go to vercel.com, create a account and come back here.
-
-![Vercel example procedure to deploy](https://github.com/4GeeksAcademy/react-hello-webapp/blob/4b530ba091a981d3916cc6e960e370decaf2e234/docs/deploy.png?raw=true)
-
-2. **Github Pages:** This boilerplate is 100% compatible with the free github pages hosting.
-To publish your website you need to push your code to your github repository and run the following command after:
-```sh
-$ npm run deploy
-```
-Note: You will need to [configure github pages for the branch gh-pages](https://help.github.com/articles/configuring-a-publishing-source-for-github-pages/#enabling-github-pages-to-publish-your-site-from-master-or-gh-pages)
+This project was build using a 4Geeks Academy boilerplate. 
+For more information see this github [repo](https://github.com/4GeeksAcademy/react-hello-webapp).
