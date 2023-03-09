@@ -35,24 +35,24 @@ The styles are contained in the 'styles' folder.
 ### Components
 
 The components are structured as follows:
-- Navbar: 
-- Footer: 
-- CardList: 
-- MyCard: 
-- DetailCard: 
-- SearchList: 
-- FavoritesList: 
+- Navbar: navigation component at the top of all the views.
+- Footer: information at the bottom of all the views.
+- CardList: grid component containing all cards for the home page.
+- MyCard: card component to populate the grid.
+- DetailCard: big card component for the detail view.
+- SearchList: small search component with suggestions placed in the navbar.
+- FavoritesList: small dropdown displaying the users favorites; includes go-to and delete.
 - ScrollToTop: self-descriptive inherited component.
 
 ### Store
 
-- appContext
-- Flux
+- appContext: creates a pseudo-store through React Context.
+- Flux: this works as a store with actions.
 
 ### Views
 
-- Home
-- Detail
+- Home: main view, where entities are grouped by type in horizontal scrolls.
+- Detail: detailed view of each entity. Accessible from home, search and favorites list.
 
 ## Contact info
 
