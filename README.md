@@ -15,7 +15,7 @@ The user is able to browse through different entities of the Star Wars saga. The
 Upon downloading the project, install and start scripts are automatically launched. It can be visualized in the browser.
 To run the project at any time:
 
-```
+```shell
   npm run start
 ```
 
