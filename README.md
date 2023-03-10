@@ -2,6 +2,8 @@
 
 > This project behaves as a personal reference archive for the Star Wars ecosystem. Currently, it includes some characters, planets and vehicles. It also allows the user to define favorites, saving them in the localStorage. It consumes an external API for the data.
 
+Visit the project and play around [here](https://sw-blog-reading-list.vercel.app/).
+
 ## Background
 
 This project is part of the learning path in 4Geeks Academy Spain. It combines intermediate React concepts with API usage. It uses React Router and React Context to create a simple representation of a store management system (such as Flux).
